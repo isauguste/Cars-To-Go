@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book a Rental Car</title>
+  <link rel="stylesheet" href="regular.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://img.freepik.com/free-photo/handsome-elegant-man-car-salon_1157-20978.jpg?semt=ais_hybrid&w=740') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+    }
+
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.95);
+      max-width: 500px;
+      margin: 60px auto;
+      padding: 40px;
+      border-radius: 12px;
+      border: 3px solid darkgreen;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      text-align: center;
+      color: darkred;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: darkgreen;
+    }
+
+    input[type="text"], input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background-color: #eef4ff;
+    }
+
+    .required {
+      color: red;
+      font-weight: normal;
+      font-size: 14px;
+      margin-left: 8px;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      background-color: darkgreen;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: green;
+    }
+  </style>
+</head>
+<body> 
+ <div id="navbar"></div>
+  <div class="form-container">
+    <h2>Cars To Go : Book A Rental Form</h2>
+    <form action="book_rental.php" method="POST" id="rentalForm">
+      <label for="carType">Type of Car Needed:
+        <span class="required">REQUIRED</span>
+      </label>
+      <input type="text" name="carType" id="carType" placeholder="Example: SUV/Sedan/Truck" required>
+
+      <label for="makeModel">Make and Model of Car:
+        <span class="required">REQUIRED</span>
+      </label>
+      <input type="text" name="makeModel" id="makeModel" placeholder="Example: Honda Accord" required>
+
+      <label for="startDate">Start Date for Rental:
+        <span class="required">REQUIRED</span>
+      </label>
+      <input type="date" name="startDate" id="startDate" required>
+
+      <label for="endDate">End Date for Rental:
+        <span class="required">REQUIRED</span>
+      </label>
+      <input type="date" name="endDate" id="endDate" required>
+
+      <!-- Hidden fields for repId and custId -->
+      <input type="hidden" name="repId" id="repId">
+      <input type="hidden" name="custId" id="custId">
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const repId = sessionStorage.getItem("repId");
+      const custId = sessionStorage.getItem("custId");
+
+      // Check for missing session data
+      if (!repId || !custId) {
+        alert("Session expired or missing. Please log in again.");
+        window.location.href = "Project1.html";
+        return;
+      }
+
+      // Populate hidden form fields
+      document.getElementById("repId").value = repId;
+      document.getElementById("custId").value = custId;
+    });
+  </script> 
+ <script src="navbar.js"></script>
+</body>
+</html>
+
