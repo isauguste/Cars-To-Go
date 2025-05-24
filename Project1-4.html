@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars To Go</title>
+    <link rel="stylesheet" href="regular.css">
+</head>
+<body>
+    <div class="design">
+        <h1 style="font-size:50px; color: darkgreen; text-align:center;">Cars To Go</h1>
+        <form id="receptionistForm">
+            <div>
+                <label for="fname">Representative's First Name:</label>
+                <input type="text" id="fname" name="fname" placeholder="Example: John" required>
+                <b><span class="required">Required*</span></b>
+            </div>
+            <br>
+            <div>
+                <label for="Lname">Representative's Last Name:</label>
+                <input type="text" id="Lname" name="Lname" placeholder="Example: Doe" required>
+                <b><span class="required">Required*</span></b>
+            </div>
+            <br>
+            <div>
+                <label for="pass">Representative's Password:</label>
+                <div class="password-container">
+                    <input type="password" id="pass" name="pass" placeholder="Example: CTG@1" required>
+                    <span class="toggle-password">
+                        <span class="show-eye">&#x1F441;</span>
+                        <span class="hide-eye">&#x1F6AB;</span>
+                    </span>
+                </div>
+                <b><span class="required">Required*</span></b>
+            </div>
+            <br>
+            <div>
+                <label for="id">Representative's ID #:</label>
+                <input type="text" id="id" name="id" placeholder="Example: 000" required>
+                <b><span class="required">Required*</span></b>
+            </div>
+            <br>
+            <div>
+                <label for="phone">Representative's Phone #:</label>
+                <input type="tel" id="phone" name="phone" placeholder="Example: 555-555-5555" required>
+                <b><span class="required">Required*</span></b>
+            </div>
+            <br>
+            <div>
+                <label for="email">Representative's Email:</label>
+                <input type="email" id="email" name="email" placeholder="Example: CTG@Cars.com">
+        
+                <b id="emailRequired"><span class="required">Required*</span></b>
+            </div>
+            <br>
+            <div>
+                <label for="request">
+                    <input type="checkbox" id="request" name="request"> Check the box to request an Email Confirmation:
+                </label>
+            </div>
+            <br>
+            <div>
+                <label for="transaction">Select a Transaction:</label>
+                <select id="transaction" name="transaction">
+                    <option value="account">Search A Representative's Accounts</option>
+                    <option value="book">Book a Customer's Rental</option>
+                    <option value="cancel">Cancel A Customer's Rental</option>
+                    <option value="additional">Request Additional Perks</option>
+                    <option value="update">Update Perks</option>
+                    <option value="new">Create a New Customer</option>
+                </select>
+            </div>
+            <br>
+            <div>
+                <input type="reset">
+                <input type="submit" id="submitBtn">
+            </div>
+        </form>
+    </div>
+    <script src="project.js?v=3"></script>
+</body>
+</html>
+
