@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Representative Account Search</title>
+  <link rel="stylesheet" href="regular.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://img.freepik.com/free-photo/parking-lot-with-cars-it_1340-34095.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    #navbar {
+      margin-bottom: 20px;
+    }
+
+    .table-wrapper {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 25px;
+      margin: 100px auto 40px auto;
+      border-radius: 12px;
+      max-width: 95%;
+      overflow-x: auto;
+      border: 3px solid darkgreen;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: darkgreen;
+      color: white;
+    }
+
+    td {
+      color: darkgreen;
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="navbar"></div>
+
+  
+  <div class="table-wrapper" id="tableContainer">
+    Loading representative account data...
+  </div>
+
+  
+  <script src="navbar.js"></script>
+  <script>
+    const repId = sessionStorage.getItem("repId");
+
+    if (!repId) {
+      alert("Session expired or missing. Please log in again.");
+      window.location.href = "Project1.html";
+    }
+
+    fetch("get_representative_data.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: "repId=" + encodeURIComponent(repId)
+    })
+    .then(response => response.text())
+    .then(html => {
+      // Prevents duplicate "Back to Login" buttons if one is returned from PHP
+      const cleanedHtml = html.replace(/<button.*?>Back to Login<\/button>/gi, "");
+      document.getElementById("tableContainer").innerHTML = cleanedHtml;
+    })
+    .catch(error => {
+      console.error("Fetch error:", error);
+      document.getElementById("tableContainer").innerHTML = "<p>Error loading records. Please try again.</p>";
+    });
+  </script>
+</body>
+</html>
+
