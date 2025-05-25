@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Customer Upgrades</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: url('https://dealerimages.dealereprocess.com/image/upload/2566020') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .form-box {
+      width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border: 3px solid darkgreen;
+      border-radius: 8px;
+      text-align: center;
+    }
+    input, select {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    .submit-btn {
+      background-color: darkgreen;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background-color: green;
+    }
+  </style>
+</head>
+<body> 
+ <div id="navbar"></div>
+  <div class="form-box">
+    <h2>Update Rental Car Upgrades</h2>
+    <form id="updateForm" action="update_upgrades.php" method="POST">
+      <label>Car Rental ID:</label><br>
+      <input type="number" name="carId" placeholder="Enter Car ID" required><br>
+
+      <label>Insurance:</label><br>
+      <select name="insurance">
+        <option value="">-- Select if changing --</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select><br>
+
+      <label>Additional Features:</label><br>
+      <input type="text" name="features" placeholder="Leave blank if no change"><br>
+
+      <label>Additional Driver's Name:</label><br>
+      <input type="text" name="drivers" placeholder="Leave blank if no change"><br>
+
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("updateForm").addEventListener("submit", function(e) {
+      const confirmUpdate = confirm("You are about to UPDATE the UpGrade Features Record of the Customer. Are you sure you want to do so?");
+      if (!confirmUpdate) {
+        e.preventDefault(); // stop form submission
+      }
+    });
+  </script>
+ <script src="navbar.js"></script>
+</body>
+</html>
+
