@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Verify Customer</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: url('https://eu-images.contentstack.com/v3/assets/blt7121b6ec5c11097b/blt33a15a363b718000/66196522794feef257affa43/trade_20in.jpg?width=1280&auto=webp&quality=95&format=jpg&disable=upscale') no-repeat center center fixed;
+      background-size: cover;
+      color: maroon;
+    }
+
+    .form-box {
+      width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border: 3px solid darkgreen;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    .submit-btn {
+      background-color: darkgreen;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Cars To Go Customer Verification Form</h2>
+    <form id="verifyForm">
+      <input type="text" id="fname" placeholder="Customer's First Name" required><br>
+      <input type="text" id="lname" placeholder="Customer's Last Name" required><br>
+      <input type="text" id="custID" placeholder="Customer's ID Number" required><br>
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+
+  <script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const nextPage = urlParams.get("next") || "dashboard.html"; // fallback if none
+
+  document.getElementById("verifyForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const fname = document.getElementById("fname").value.trim();
+    const lname = document.getElementById("lname").value.trim();
+    const custID = document.getElementById("custID").value.trim();
+
+    fetch("verify_customer.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `fname=${fname}&lname=${lname}&custID=${custID}`
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.found) {
+          sessionStorage.setItem("custId", custID);
+          if (confirm("Customer found. Continue to next step?")) {
+            window.location.href = nextPage;
+          }
+        } else {
+          alert("CUSTOMER CANNOT BE FOUND. DID YOU ENTER THE DATA CORRECTLY?");
+          if (confirm("YES I WANT TO RE-ENTER DATA?")) {
+            window.location.href = "verify_customer.html" + window.location.search; // preserve `next`
+          } else {
+            window.location.href = "create_customer.html";
+          }
+        }
+      })
+      .catch(err => {
+        alert("Server error occurred. Check console.");
+        console.error(err);
+      });
+  });
+</script>
+
+</body>
+</html>
+
