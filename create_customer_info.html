@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enter Customer Info</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://images.unsplash.com/photo-1583267745608-02878d5c5b99') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+    }
+
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.95);
+      max-width: 500px;
+      margin: 60px auto;
+      padding: 40px;
+      border-radius: 12px;
+      border: 3px solid darkgreen;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      text-align: center;
+      color: darkred;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: darkgreen;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      background-color: #eef4ff;
+    }
+
+    .required {
+      color: red;
+      font-size: 13px;
+      margin-left: 5px;
+    }
+
+    button {
+      margin-top: 25px;
+      width: 100%;
+      background-color: darkgreen;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Enter Customer Personal Information</h2>
+    <form action="create_customer_info.php" method="POST" onsubmit="return validateForm()">
+      <label for="street">Street Address:<span class="required">*</span></label>
+      <input type="text" id="street" name="street" required>
+
+      <label for="city">City:<span class="required">*</span></label>
+      <input type="text" id="city" name="city" required>
+
+      <label for="state">State:<span class="required">*</span></label>
+      <input type="text" id="state" name="state" maxlength="2" required>
+
+      <label for="zip">Zip Code:<span class="required">*</span></label>
+      <input type="text" id="zip" name="zip" maxlength="5" required>
+
+      <label for="phone">Phone Number:<span class="required">*</span></label>
+      <input type="text" id="phone" name="phone" required>
+
+      <input type="hidden" id="custId" name="custId">
+
+      <button type="submit">Submit Info</button>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const custId = sessionStorage.getItem("custId");
+      if (!custId) {
+        alert("Session expired or missing Customer ID. Returning to login.");
+        window.location.href = "Project1.html";
+      } else {
+        document.getElementById("custId").value = custId;
+      }
+    });
+
+    function validateForm() {
+      const zip = document.getElementById("zip").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const state = document.getElementById("state").value.trim();
+
+      if (!/^\d{5}$/.test(zip)) {
+        alert("Zip code must be 5 digits.");
+        return false;
+      }
+
+      if (!/^\d{3}[-.\s]?\d{3}[-.\s]?\d{4}$/.test(phone)) {
+        alert("Phone number must be in a valid 10-digit format.");
+        return false;
+      }
+
+      if (!/^[A-Z]{2}$/i.test(state)) {
+        alert("State must be 2 letters.");
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
+
