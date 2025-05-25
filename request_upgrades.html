@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cars To Go Request Upgrades Form</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: url('https://img.freepik.com/premium-photo/automatic-gear-shift-handle-red-luxury-car-interior-shallow-doff_355018-513.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: maroon;
+    }
+    .form-box {
+      width: 450px;
+      margin: 100px auto;
+      padding: 25px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border: 3px solid darkgreen;
+      border-radius: 10px;
+      text-align: center;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+    }
+    .submit-btn {
+      background-color: darkgreen;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      margin-top: 15px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .submit-btn:hover {
+      background-color: green;
+    }
+    .required {
+      color: red;
+    }
+  </style>
+</head>
+<body> 
+ <div id="navbar"></div>
+  <div class="form-box">
+    <h2>Cars To Go Request Upgrades Form</h2>
+    <form id="upgradeForm" method="POST" action="request_upgrades.php">
+      <label>Car ID: <span class="required">REQUIRED</span></label>
+      <input type="number" name="carId" placeholder="Example: 1112" required>
+
+      <label>Want Insurance: <span class="required">REQUIRED</span></label>
+      <input type="text" name="insurance" placeholder="Example: YES or NO" required>
+
+      <label>Upgrades Requested: <span class="required">REQUIRED</span></label>
+      <input type="text" name="features" placeholder="Example: GPS, Bluetooth" required>
+
+      <label>Additional Driver's Name: <span class="required">REQUIRED</span></label>
+      <input type="text" name="drivers" placeholder="Example: Minnie Driver" required>
+
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("upgradeForm").addEventListener("submit", function (e) {
+      const confirmRequest = confirm("You are about to REQUEST UpGrades for your Customer. Are you sure you want to do so?");
+      if (!confirmRequest) {
+        e.preventDefault();
+        alert("Upgrade request cancelled.");
+      }
+    });
+  </script> 
+ <script src="navbar.js"></script>
+</body>
+</html>
+
