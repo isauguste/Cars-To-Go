@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Create Customer Account</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('https://imgproxy.divecdn.com/vp9y3aKdTxqb98R0aEy_84mb0IRxF80qdYpOFV1e6x8/g:ce/rs:fill:1200:675:1/Z3M6Ly9kaXZlc2l0ZS1zdG9yYWdlL2RpdmVpbWFnZS9HZXR0eUltYWdlcy0xNDg2MDMyNjQ1XzEuanBn.webp');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      max-width: 400px;
+      margin: 100px auto;
+      border: 3px solid green;
+      border-radius: 12px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      color: maroon;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: darkgreen;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: green;
+    }
+  </style>
+</head>
+<body> 
+ <div id="navbar"></div>
+  <div class="form-container">
+    <h2>Cars To Go : Create An Account</h2>
+    <form action="create_customer.php" method="post">
+      <label for="firstName">Customer's First Name:</label>
+      <input type="text" id="firstName" name="firstName" required />
+
+      <label for="lastName">Customer's Last Name:</label>
+      <input type="text" id="lastName" name="lastName" required />
+
+      <label for="customerId">Customer's ID Number:</label>
+      <input type="text" id="customerId" name="customerId" placeholder="Example: 482" required />
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+ <script src="navbar.js"></script>
+</body>
+</html>
+
